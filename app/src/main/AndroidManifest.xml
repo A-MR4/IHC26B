@@ -25,6 +25,10 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".Video"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".Opcion"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
