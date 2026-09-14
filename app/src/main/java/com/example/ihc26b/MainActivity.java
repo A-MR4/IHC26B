@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         
         if (id == R.id.button) {
-            //intent = new Intent(MainActivity.this, Inicio.class);
+            intent = new Intent(MainActivity.this, Opcion.class);
         } else if (id == R.id.button2) {
             intent = new Intent(MainActivity.this, Pag2.class);
         } else if (id == R.id.button3) {
