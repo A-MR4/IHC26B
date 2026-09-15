@@ -13,12 +13,18 @@ public class Video extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         video = (VideoView) findViewById(R.id.videoView);
-        String videopath = "android resources://" + getPackageName() +"/" + R.raw.video;
+        String videopath = "android.resource://" + getPackageName() + "/" + R.raw.video;
         Uri uri = Uri.parse(videopath);
         video.setVideoURI(uri);
         MediaController mediaController = new MediaController(this);
         video.setMediaController(mediaController);
         mediaController.setAnchorView(video);
-        video.start();
+
+        video.setOnPreparedListener(new android.media.MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(android.media.MediaPlayer mp) {
+                video.start();
+            }
+        });
     }
 }
