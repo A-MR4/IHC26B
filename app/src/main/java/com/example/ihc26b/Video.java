@@ -20,11 +20,6 @@ public class Video extends AppCompatActivity {
         video.setMediaController(mediaController);
         mediaController.setAnchorView(video);
 
-        video.setOnPreparedListener(new android.media.MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(android.media.MediaPlayer mp) {
-                video.start();
-            }
-        });
+        video.setOnPreparedListener(mp -> video.start());
     }
 }

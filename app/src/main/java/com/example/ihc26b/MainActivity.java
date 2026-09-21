@@ -6,17 +6,34 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText e;
     private TextView t;
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        webView = findViewById(R.id.webView);
+
+        // Configuración del WebView
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true); // Habilitar JavaScript
+
+        // Forzar la apertura de enlaces en WebView en lugar del navegador
+        webView.setWebViewClient(new WebViewClient());
+
+        // Cargar una página web
+        webView.loadUrl("https://www.google.com");
         t = findViewById(R.id.textView);
         e = findViewById(R.id.editTextText);
         
@@ -24,8 +41,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
         findViewById(R.id.button4).setOnClickListener(this);
-    }
 
+        // Modern and fully compatible back button handler for web views
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    setEnabled(false);
+                    onBackPressed();
+                }
+            }
+        });
+    }
+    
     @Override
     public void onClick(View v) {
         // Show the toast immediately when ANY button is clicked
