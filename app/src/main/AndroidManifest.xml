@@ -29,6 +29,10 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".Lista"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".Opcion"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
